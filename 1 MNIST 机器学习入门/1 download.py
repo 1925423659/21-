@@ -1,10 +1,10 @@
 # 从 tensorflow.examples.tutorials.mnist 引入模块
 # 这是 TensorFlow 为了教学 MNIST 而提前编制的程序
-from tensorflow.examples.tutorials.mnist import input_data
+from tensorflow.contrib.learn.python.learn.datasets.mnist import read_data_sets
 
 # 从 mnist_data 文件夹中读取 MNIST 数据
 # 如果数据不存在，会自动执行下载
-mnist = input_data.read_data_sets('dataset/mnist', one_hot=True)
+mnist = read_data_sets('dataset/mnist', one_hot=True)
 
 # 查看训练数据的大小
 print(mnist.train.images.shape)         # (55000, 784)

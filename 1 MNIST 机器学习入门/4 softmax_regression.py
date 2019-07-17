@@ -45,5 +45,5 @@ prediction = tensorflow.equal(tensorflow.argmax(y, 1), tensorflow.argmax(y_, 1))
 # 计算预测准确率
 accuracy = tensorflow.reduce_mean(tensorflow.cast(prediction, tensorflow.float32))
 # 获取最终模型的准确率
-result = session.run(accuracy, feed_dict={x: mnist.test.images, y_label: mnist.test.labels})
+result = session.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
 print(result)

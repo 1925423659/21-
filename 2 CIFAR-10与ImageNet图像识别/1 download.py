@@ -7,7 +7,7 @@ import tensorflow
 # 用于命令行参数的处理
 FLAGS = tensorflow.app.flags.FLAGS
 # 在 cifar10 模块中预先定义了 tensorflow.app.flags.FLAGS.data_dir 为 CIFAR-10 的数据路径
-FLAGS.data_dir = 'cifar10_data'
+FLAGS.data_dir = 'dataset/cifar10'
 
 # 如果不存在数据文件，执行下载
 cifar10.maybe_download_and_extract()

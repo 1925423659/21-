@@ -35,3 +35,21 @@ python slim/eval_image_classifier.py \
 --model_name=inception_v3
 
 tensorboard --logdir dataset/train
+
+python slim/export_inference_graph.py \
+--alsologtostderr \
+--model_name=inception_v3 \
+--output_file=dataset/graph/inception_v3_inference_graph.pb \
+--dataset_name=satellite
+
+python 2\ freeze_graph.py \
+--input_graph=dataset/graph/inception_v3_inference_graph.pb \
+--input_checkpoint=dataset/train/model.ckpt-55 \
+--input_binary=true \
+--output_node_names=InceptionV3/Predictions/Reshape_1 \
+--output_graph=dataset/graph/freeze_graph.pb
+
+python 3\ classify_image_inception_v3.py \
+--model_path=dataset/graph/freeze_graph.pb \
+--label_path=dataset/tfrecord/label.txt \
+--image_file=dataset/pic/test/test_image_1.jpg

@@ -1,0 +1,8 @@
+2 CIFAR-10 与 ImageNet 图像识别/dataset/cifar10/
+3 打造自己的图像识别模型/dataset/pretrained/
+3 打造自己的图像识别模型/dataset/train/
+5 深度学习中的目标检测/research/object_detection/VOC/export/
+5 深度学习中的目标检测/research/object_detection/VOC/pretrained/
+5 深度学习中的目标检测/research/object_detection/VOC/record/
+5 深度学习中的目标检测/research/object_detection/VOC/train/
+5 深度学习中的目标检测/research/object_detection/VOC/VOCtrainval_11-May-2012.tar

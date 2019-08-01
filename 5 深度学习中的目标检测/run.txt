@@ -1,0 +1,17 @@
+protoc object_detection/protos/*.proto --python_out=.
+Get-ChildItem object_detection/protos/*.proto |Resolve-Path -Relative | %{protoc $_ --python_out=.}
+
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+SET PYTHONPATH=%cd%;%cd%\slim
+
+python object_detection/builders/model_builder_test.py
+
+python dataset_tools/create_pascal_tf_record.py --data_dir=VOC/VOCdevkit --year=VOC2012 --set=train --output_path=VOC/record/pascal_train.record
+
+python dataset_tools/create_pascal_tf_record.py --data_dir=VOC/VOCdevkit --year=VOC2012 --set=val --output_path=VOC/record/pascal_val.record
+
+python legacy/train.py --train_dir=VOC/train --pipeline_config_path=VOC/VOC.config
+
+tensorboard --logdir VOC/train
+
+python export_inference_graph.py --input_type=image_tensor --pipeline_config_path=VOC/VOC.config --trained_checkpoint_prefix=VOC/train/model.ckpt-2737 --output_directory=VOC/export
